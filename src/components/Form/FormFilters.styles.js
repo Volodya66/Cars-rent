@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const FormWrapper = styled.div`
   & .form-filters {
+    width: 859px;
     display: flex;
     align-items: flex-end;
     margin-left: auto;
@@ -16,6 +17,26 @@ export const FormWrapper = styled.div`
     outline: none;
   }
 
+  & .label-car,
+  .label-prise {
+    margin-right: 18px;
+    animation: all 0.3s ease-in-out;
+
+    position: relative;
+
+    &::before {
+      content: '▼';
+      position: absolute;
+      top: 41px;
+      right: 0;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    &:hover::before {
+      content: '▲';
+    }
+  }
   & .car-brand,
   .car-prise {
     border: none;
@@ -25,6 +46,9 @@ export const FormWrapper = styled.div`
     height: 48px;
     background: #f7f7fb;
     outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
 
   & .mileage-left {
@@ -35,6 +59,7 @@ export const FormWrapper = styled.div`
     border: none;
     border-right: 1px solid rgba(138, 138, 137, 0.2);
     outline: none;
+    padding: 24px 14px;
   }
   & .mileage-right {
     border-radius: 0 14px 14px 0;
@@ -43,5 +68,6 @@ export const FormWrapper = styled.div`
     background: #f7f7fb;
     border: none;
     outline: none;
+    padding: 24px 14px;
   }
 `;
