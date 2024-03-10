@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const FooterWrapper = styled.footer`
   margin-left: auto;
+  margin-top: auto;
   margin-right: auto;
   width: 1440px;
   padding: 20px 128px;

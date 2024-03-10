@@ -7,6 +7,7 @@ export const FormWrapper = styled.div`
     align-items: flex-end;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
   }
   & .text-input {
     font-weight: 500;
@@ -69,5 +70,23 @@ export const FormWrapper = styled.div`
     border: none;
     outline: none;
     padding: 24px 14px;
+  }
+  & .button-submit {
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #fff;
+    border-radius: 12px;
+    padding: 14px 44px;
+    width: 136px;
+    height: 48px;
+    background: #3470ff;
+    margin: auto 0 0 18px;
+    transition: background-color 0.25s ease-in;
+
+    &:hover {
+      background: #0b44cd;
+    }
   }
 `;

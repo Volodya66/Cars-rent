@@ -1,62 +1,71 @@
 import { FormWrapper } from './FormFilters.styles';
 import { Formik, Form, Field } from 'formik';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { carModels } from '../../redux/car/selectors';
+import { getCarsBrands } from '../../redux/car/operations';
 
 import schema from '../../schemas/schemasFormYup';
 
-const FormFilters = ({ modelsCar }) => {
-  const prices = Array.from({ length: 20 }, (_, index) => (index + 1) * 10);
-  console.log('modelsCar: ', modelsCar);
-  const handleSubmit = (values, action) => {
-    const { car, prise, carMileageMin, carMileageMax } = values;
+const FormFilters = ({ setFilterParams }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCarsBrands());
+  }, [dispatch]);
+  const models = useSelector(carModels) || [];
+
+  const prices = Array.from({ length: 30 }, (_, index) => (index + 1) * 10);
+
+  const handleSubmit = (values) => {
+    const { make, rentalPrice, carMileageMin, carMileageMax } = values;
     const userOrder = {
-      car,
-      prise,
+      make,
+      rentalPrice,
       carMileageMin,
       carMileageMax,
     };
-    console.log(userOrder);
-    action.resetForm();
+    const sanitizeUserOrder = (order) => {
+      if (order.make === 'Enter the text') {
+        order.make = '';
+      }
+      if (order.rentalPrice === 'To $') {
+        order.rentalPrice = 0;
+      }
+      return order;
+    };
+
+    setFilterParams(sanitizeUserOrder(userOrder));
   };
   return (
     <FormWrapper>
       <Formik
         validationSchema={schema}
         initialValues={{
-          car: '',
-          prise: '',
+          make: '',
+          rentalPrice: 0,
           carMileageMin: '',
           carMileageMax: '',
         }}
         onSubmit={handleSubmit}
       >
         <Form className="form-filters" autoComplete="on">
-          <label className="label-car" htmlFor="car">
+          <label className="label-car" htmlFor="make">
             <p className="text-input">Car brand</p>
 
-            <Field className="car-brand" as="select" name="car">
+            <Field className="car-brand" as="select" name="make">
               <option value={'Enter the text'}>Enter the text</option>
-              {modelsCar.map((car) => (
+              {models.map((car) => (
                 <option key={car} value={car}>
                   {car}
                 </option>
               ))}
-              {/* <option value="red">Red</option>
-              <option value="green">Green</option>
-              <option value="blue">Blue</option> */}
             </Field>
           </label>
-          <label className="label-prise" htmlFor="prise">
+          <label className="label-prise" htmlFor="rentalPrice">
             <p className="text-input">Price/ 1 hour</p>
-            {/* <Field
-              placeholder="To $"
-              as="select"
-              className="car-prise"
-              type="prise"
-              name="prise"
-            /> */}
 
-            <Field as="select" className="car-prise" name="prise">
-              <option value={'Enter the text'}>To $</option>
+            <Field as="select" className="car-prise" name="rentalPrice">
+              <option value={'To $'}>To $</option>
               {prices.map((price) => (
                 <option key={price} value={price}>
                   {price}
@@ -69,7 +78,9 @@ const FormFilters = ({ modelsCar }) => {
             <Field
               placeholder="From"
               className="mileage-left"
-              type="carMileageMin"
+              type="number"
+              min="1"
+              max="99999"
               name="carMileageMin"
             />
           </label>
@@ -77,7 +88,9 @@ const FormFilters = ({ modelsCar }) => {
             <Field
               placeholder="To"
               className="mileage-right "
-              type="carMileageMax"
+              type="number"
+              min="1"
+              max="99999"
               name="carMileageMax"
             />
           </label>

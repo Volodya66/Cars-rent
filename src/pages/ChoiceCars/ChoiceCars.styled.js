@@ -6,22 +6,30 @@ export const ChoiceCarsWrapper = styled.div`
   width: 1440px;
   padding: 0 128px;
 
-  & .button-submit {
-    border: none;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.42857;
-    color: #fff;
-    border-radius: 12px;
-    padding: 14px 44px;
-    width: 136px;
-    height: 48px;
-    background: #3470ff;
-    margin: auto 0 0 18px;
-    transition: background-color 0.25s ease-in;
-
-    &:hover {
-      background: #0b44cd;
-    }
+  & .list-car {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 29px;
+    margin-bottom: 100px;
   }
+  & .wrapper-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  & .btn-add-photo {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    background-color: transparent;
+    color: #3470ff;
+    border: none;
+  }
+
+  // & .favorite {
+  //   fill: #3470ff;
+  // }
 `;

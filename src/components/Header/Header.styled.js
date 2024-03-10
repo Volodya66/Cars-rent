@@ -11,6 +11,10 @@ export const HeaderWrapper = styled.header`
     justify-content: space-between;
   }
 
+  & .active {
+    border-bottom: 2px solid blue;
+  }
+
   & .list-navigate {
     display: flex;
     gap: 40px;

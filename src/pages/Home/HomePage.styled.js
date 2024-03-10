@@ -18,4 +18,21 @@ export const HomePageWrapper = styled.div`
 
     margin-bottom: 40px;
   }
+
+  & .details {
+    margin-bottom: 40px;
+  }
+  &,
+  users-details {
+    margin-bottom: 20px;
+  }
+  & .list-users-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 384px;
+  }
+
+  & .list-users-details > li {
+    width: 400px;
+  }
 `;

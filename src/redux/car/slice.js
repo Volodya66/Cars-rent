@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getCarsData, getCarsBrands } from './operations';
+import { getCarsData, getCarsBrands, getCarDetails } from './operations';
 
 const initialState = {
+  modalOpen: false,
   carBrands: [],
-  dataCars: null,
+  dataCars: [],
+  carDetails: [],
   error: '',
   isLoading: false,
 };
@@ -34,6 +36,14 @@ const carSlice = createSlice({
     });
     builder.addCase(getCarsBrands.rejected, (state) => {
       state.isLoading = false;
+    });
+
+    builder.addCase(getCarDetails.fulfilled, (state, { payload }) => {
+      state.carDetails = payload;
+      console.log('payload: ', payload);
+    });
+    builder.addCase(getCarDetails.rejected, (state, action) => {
+      state.error = action.payload;
     });
   },
 });

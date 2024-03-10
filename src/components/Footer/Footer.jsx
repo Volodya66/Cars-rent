@@ -5,8 +5,8 @@ export const Footer = () => {
     <FooterWrapper>
       <ul className="list-contact">
         <li>
-          <a className="link" href="tel:+380000000000">
-            +380000000000
+          <a className="link" href="tel:+380730000000">
+            +380730000000
           </a>
         </li>
         <li>
