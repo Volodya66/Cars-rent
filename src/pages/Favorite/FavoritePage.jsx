@@ -39,7 +39,6 @@ export const FavoritePage = () => {
         <ul className="favorite-list">
           <ListCars dataCar={filtersCars(filterParams, favoriteCar)} />
         </ul>
-        favoriteCar
       </FavoriteWrapper>
       ;
     </Layout>
